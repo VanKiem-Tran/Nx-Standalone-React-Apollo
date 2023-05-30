@@ -5,3 +5,5 @@ scripts/*
 src/generated/*
 src/vite-env.d.ts
 ts.config.json
+
+amplify-codegen-temp/models

@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-nxstandalonereactapo-dev-180358-authRole",
+      "UnauthRoleArn": "arn:aws:iam::346115320071:role/amplify-nxstandalonereactapo-dev-180358-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::346115320071:role/amplify-nxstandalonereactapo-dev-180358-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-nxstandalonereactapo-dev-180358-deployment",
+      "UnauthRoleName": "amplify-nxstandalonereactapo-dev-180358-unauthRole",
+      "StackName": "amplify-nxstandalonereactapo-dev-180358",
+      "StackId": "arn:aws:cloudformation:us-east-1:346115320071:stack/amplify-nxstandalonereactapo-dev-180358/af90bc90-fed9-11ed-9357-0af76f990dff",
+      "AmplifyAppId": "d3udypzqrpz5d0"
+    },
+    "categories": {
+      "api": {
+        "nxstandalonereactapo": {}
+      }
+    }
+  }
+}
