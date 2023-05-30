@@ -60,7 +60,7 @@ jobs:
           name: Checkout Amplify
           command: |
             amplify init --amplify "{\"envName\"😕"$VITE_NODE_ENV\"}" --providers "{\"awscloudformation\":{\"useProfile\":true,\"profileName\"😕"default\"}}" --yes
-      - run:
+      - run: 
           name: Deploy
           command: |
             amplify publish --invalidateCloudFront --codegen "{\"generateCode\":false}" --yes
