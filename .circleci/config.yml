@@ -37,7 +37,7 @@ jobs:
       - install_node_modules
       - run:
           name: Lint and Test
-          command: pnpm run pre-commit
+          command: pnpm lint-staged --relative
 
   deploy:
     executor:
