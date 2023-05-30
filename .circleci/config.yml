@@ -9,21 +9,21 @@ commands:
     description: 'Install node modules'
     steps:
       - restore_cache:
-          name: Restore pnpm Package Cache
+          name: Restore npm Package Cache
           keys:
-            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+            - npm-packages-{{ checksum "npm-lock.yaml" }}
       - run:
-          name: Install pnpm package manager
+          name: Install npm package manager
           command: |
             sudo corepack enable
-            sudo corepack prepare pnpm@latest-8 --activate
+            sudo corepack prepare npm@latest-8 --activate
       - run:
           name: Install Dependencies
           command: |
-            pnpm install
+            npm install
       - save_cache:
-          name: Save pnpm Package Cache
-          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+          name: Save npm Package Cache
+          key: npm-packages-{{ checksum "npm-lock.yaml" }}
           paths:
             - node_modules
 
@@ -37,7 +37,7 @@ jobs:
       - install_node_modules
       - run:
           name: Lint and Test
-          command: pnpm run pre-commit
+          command: npm run pre-commit
 
   deploy:
     executor:
