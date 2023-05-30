@@ -71,11 +71,11 @@ workflows:
       - build:
           filters:
             branches:
-              only: staging
+              only: main
       - deploy:
           requires:
             - build
           filters:
             branches:
-              only: staging
+              only: main
           context: xfactor-staging
