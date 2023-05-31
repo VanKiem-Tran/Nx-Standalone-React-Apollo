@@ -56,11 +56,11 @@ jobs:
           command: |
             aws --version
             amplify --version
-            
+
       - run:
           name: Checkout Amplify
           command: |
-            amplify init --amplify "{\"envName\"😕"$VITE_NODE_ENV\"}" --providers "{\"awscloudformation\":{\"useProfile\":true,\"profileName\"😕"default\"}}" --yes
+            amplify init --amplify "{\"envName\":\"$VITE_NODE_ENV\"}" --providers "{\"awscloudformation\":{\"useProfile\":true,\"profileName\":\"default\"}}" --yes
       - run:
           name: Deploy
           command: |
