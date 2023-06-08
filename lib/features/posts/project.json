@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "lib/features/posts/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["features"],
   "targets": {
     "lint": {
       "executor": "@nx/linter:eslint",
@@ -34,6 +34,21 @@
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../../coverage/lib/features/posts"
+      }
+    },
+    "gen-translation-keys": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "en",
+      "options": {
+        "color": true
+      },
+      "configurations": {
+        "en": {
+          "command": "ts-node --project scripts/tsconfig.json scripts/generateTranslationTypes.ts --module features/posts --file en.json"
+        },
+        "vi": {
+          "command": "ts-node --project scripts/tsconfig.json scripts/generateTranslationTypes.ts --module features/posts --file vi.json"
+        }
       }
     }
   }

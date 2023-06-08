@@ -4,9 +4,9 @@ import type { PluginOption } from 'vite';
 import { defineConfig, loadEnv } from 'vite';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 
-const htmlPlugin: (env: Record<string, string | undefined>) => PluginOption = (
-  env
-) => ({
+const htmlPlugin: (
+  env: Record<string, string | undefined>,
+) => PluginOption = env => ({
   name: 'html-transform',
   transformIndexHtml: {
     enforce: 'pre',
@@ -36,6 +36,7 @@ export default ({ mode }: { mode: string }) => {
       port: 3000,
     },
     test: {
+      setupFiles: ['./vitest.setup.ts'],
       cache: {
         dir: './node_modules/.vitest',
       },

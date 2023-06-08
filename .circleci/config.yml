@@ -37,7 +37,7 @@ jobs:
       - install_node_modules
       - run:
           name: Lint and Test
-          command: pnpm lint-staged --relative && echo "$AWS_ACCESS_KEY_ID" "$AWS_DEFAULT_REGION" "$AWS_SECRECT_ACCESS_KEY"
+          command: pnpm lint-staged --relative
 
   deploy:
     executor:
@@ -56,11 +56,10 @@ jobs:
           command: |
             aws --version
             amplify --version
-
       - run:
-          name: Checkout Amplify
+          name: 'Checkout Amplify << parameters.deploy_env >> Environment'
           command: |
-            amplify init --amplify "{\"envName\":\"$VITE_NODE_ENV\"}" --providers "{\"awscloudformation\":{\"useProfile\":true,\"profileName\":\"default\"}}" --yes
+            amplify init --amplify "{\"envName\":\"<< parameters.deploy_env >>\"}" --providers "{\"awscloudformation\":{\"useProfile\":true,\"profileName\":\"default\"}}" --yes
       - run:
           name: Deploy
           command: |

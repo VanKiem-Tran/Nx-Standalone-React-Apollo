@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "lib/shared/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["shared"],
   "targets": {
     "lint": {
       "executor": "@nx/linter:eslint",
@@ -34,6 +34,21 @@
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/lib/shared"
+      }
+    },
+    "gen-translation-keys": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "en",
+      "options": {
+        "color": true
+      },
+      "configurations": {
+        "en": {
+          "command": "ts-node --project scripts/tsconfig.json scripts/generateTranslationTypes.ts --module shared --file en.json"
+        },
+        "vi": {
+          "command": "ts-node --project scripts/tsconfig.json scripts/generateTranslationTypes.ts --module shared --file vi.json"
+        }
       }
     }
   }
