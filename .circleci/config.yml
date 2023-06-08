@@ -66,16 +66,43 @@ jobs:
             amplify publish --invalidateCloudFront --codegen "{\"generateCode\":false}" --yes
 
 workflows:
-  build-and-deploy-staging:
+  install-package-and-build:
     jobs:
-      - build:
-          filters:
-            branches:
-              only: main
+      - build
+      
+  deploy-staging:     
       - deploy:
           requires:
             - build
           filters:
             branches:
-              only: main
+              only:
+                - develop
           context: xfactor-staging
+  deploy-uat:     
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - uat
+          context: xfactor-uat
+  deploy-sit:     
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - sit
+          context: xfactor-sit
+  deploy-release:     
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - release
+          context: xfactor-release
