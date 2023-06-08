@@ -57,52 +57,25 @@ jobs:
             aws --version
             amplify --version
       - run:
-          name: 'Checkout Amplify'
+          name: 'Checkout Amplify << parameters.deploy_env >> Environment'
           command: |
-            amplify init --amplify "{\"envName\":\"$VITE_NODE_ENV\"}" --providers "{\"awscloudformation\":{\"useProfile\":true,\"profileName\":\"default\"}}" --yes
+            amplify init --amplify "{\"envName\":\"<< parameters.deploy_env >>\"}" --providers "{\"awscloudformation\":{\"useProfile\":true,\"profileName\":\"default\"}}" --yes
       - run:
           name: Deploy
           command: |
             amplify publish --invalidateCloudFront --codegen "{\"generateCode\":false}" --yes
 
 workflows:
-  install-package-and-build:
+  build-and-deploy-staging:
     jobs:
-      - build
-      
-  deploy-staging:     
+      - build:
+          filters:
+            branches:
+              only: main
       - deploy:
           requires:
             - build
           filters:
             branches:
-              only:
-                - develop
+              only: main
           context: xfactor-staging
-  deploy-uat:     
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - uat
-          context: xfactor-uat
-  deploy-sit:     
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - sit
-          context: xfactor-sit
-  deploy-release:     
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - release
-          context: xfactor-release
